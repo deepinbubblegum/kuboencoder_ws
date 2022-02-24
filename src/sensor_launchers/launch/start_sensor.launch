@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <!-- encoder -->
+    <include file="$(find sensor_encoder)/launch/sensor_encoder.launch"/>
+
+    <!-- ros_bno055_uart -->
+    <include file="$(find ros_bno055_uart)/launch/imu.launch"/>
+</launch>
