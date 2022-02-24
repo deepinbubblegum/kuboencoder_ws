@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import rospy
+import spidev
 import RPi.GPIO as GPIO
 from math import pi
 from sensor_custom_msgs.msg import SensorEncoder, SensorEncoderStamped
