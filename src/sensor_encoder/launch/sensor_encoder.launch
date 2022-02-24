@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <arg name="frame_id" default="front_encoder"/>
+    <arg name="frequency" default="50"/>
+    <arg name="offset" default="0.0"/>
+    <node pkg="sensor_encoder" type="sensor_encoder_node.py" name="sensor_encoder_node" output="screen"/>
+    <param name="frame_id" value="$(arg frame_id)"/>
+    <param name="frequency" value="$(arg frequency)"/>
+    <param name="offset" value="$(arg offset)"/>
+</launch>
