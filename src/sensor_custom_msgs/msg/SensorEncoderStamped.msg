@@ -1,2 +1,2 @@
 Header  header
-SensorEncoder encoder
+SensorEncoder sensor
