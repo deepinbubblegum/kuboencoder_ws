@@ -38,25 +38,18 @@ class sensor_encoder:
         self.spi.max_speed_hz = 1000000
         
     def update(self):
-        try:
-          rospy.Time.now()
-          GPIO.output(13, GPIO.LOW)
-          msg = [0b00000000, 0b00000000]
-          recv = self.spi.xfer2(msg)
-          data = recv[0]*0xFF + recv[1]
-          rad = ((data / (32768 / 360)) * pi / 180) + self.offset
-          GPIO.output(13, GPIO.HIGH)
-          encoder = SensorEncoderStamped()
-          encoder.header.stamp = rospy.Time.now()
-          encoder.header.frame_id = self.frame_id
-          encoder.sensor.position = rad
-          encoder.sensor.offset = self.offset
-          self.pub_sensor.publish(encoder)
-        except:
-          rospy.logwarn('Something went wrong')
-        finally:
-          self.spi.close()
-          rospy.loginfo('The try except is finished')
+        GPIO.output(13, GPIO.LOW)
+        msg = [0b00000000, 0b00000000]
+        recv = self.spi.xfer2(msg)
+        data = recv[0]*0xFF + recv[1]
+        rad = ((data / (32768 / 360)) * pi / 180) + self.offset
+        GPIO.output(13, GPIO.HIGH)
+        encoder = SensorEncoderStamped()
+        encoder.header.stamp = rospy.Time.now()
+        encoder.header.frame_id = self.frame_id
+        encoder.sensor.position = rad
+        encoder.sensor.offset = self.offset
+        self.pub_sensor.publish(encoder)
       
     def run(self):
         rate = rospy.Rate(self.frequency)
