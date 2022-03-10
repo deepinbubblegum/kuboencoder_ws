@@ -47,7 +47,7 @@ class sensor_encoder:
         encoder = SensorEncoderStamped()
         encoder.header.stamp = rospy.Time.now()
         encoder.header.frame_id = self.frame_id
-        encoder.sensor.position = rad
+        encoder.sensor.position = round(rad, 10)
         encoder.sensor.offset = self.offset
         self.pub_sensor.publish(encoder)
       
